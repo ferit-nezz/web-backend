@@ -27,16 +27,21 @@ let AuthService = class AuthService {
         try {
             const user = await this.prisma.user.create({
                 data: {
+                    username: dto.username,
                     email: dto.email,
                     hash,
                 },
             });
-            return this.signToken(user.id, user.email);
+            const token = await this.signToken(user.id, user.email);
+            return {
+                user,
+                token,
+            };
         }
         catch (error) {
             if (error instanceof runtime_1.PrismaClientKnownRequestError) {
-                if (error.code === 'P2002') {
-                    throw new common_1.ForbiddenException('Credentials taken');
+                if (error.code === "P2002") {
+                    throw new common_1.ForbiddenException("Credentials taken");
                 }
             }
             throw error;
@@ -49,12 +54,16 @@ let AuthService = class AuthService {
             },
         });
         if (!user)
-            throw new common_1.ForbiddenException('Credentials incorrect');
+            throw new common_1.ForbiddenException("Credentials incorrect");
         const pwMatches = await argon.verify(user.hash, dto.password);
         if (!pwMatches) {
-            throw new common_1.ForbiddenException('Credentials incorrect');
+            throw new common_1.ForbiddenException("Credentials incorrect");
         }
-        return this.signToken(user.id, user.email);
+        const token = await this.signToken(user.id, user.email);
+        return {
+            user,
+            token,
+        };
     }
     async signToken(userId, email) {
         const payload = {
@@ -62,8 +71,8 @@ let AuthService = class AuthService {
             email,
         };
         const token = await this.jwt.signAsync(payload, {
-            expiresIn: '15m',
-            secret: this.config.get('JWT_SECRET'),
+            expiresIn: "15m",
+            secret: this.config.get("JWT_SECRET"),
         });
         return {
             access_token: token,
