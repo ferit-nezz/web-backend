@@ -34,14 +34,14 @@ __decorate([
     __metadata("design:type", String)
 ], EventDto.prototype, "type", void 0);
 __decorate([
-    (0, class_validator_1.IsDate)(),
+    (0, class_validator_1.IsString)(),
     (0, class_validator_1.IsNotEmpty)(),
-    __metadata("design:type", Date)
+    __metadata("design:type", String)
 ], EventDto.prototype, "date", void 0);
 __decorate([
-    (0, class_validator_1.IsDate)(),
+    (0, class_validator_1.IsString)(),
     (0, class_validator_1.IsNotEmpty)(),
-    __metadata("design:type", Date)
+    __metadata("design:type", String)
 ], EventDto.prototype, "time", void 0);
 __decorate([
     (0, class_validator_1.IsNotEmpty)(),

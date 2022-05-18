@@ -1,9 +1,9 @@
-import { Body, Controller, Get, Param, Post, UseGuards } from '@nestjs/common';
-import { JwtGuard } from 'src/auth/guard';
-import { EventDto, JoinEventDto } from './dto';
-import { EventService } from './event.service';
+import { Body, Controller, Get, Param, Post, UseGuards } from "@nestjs/common";
+import { JwtGuard } from "src/auth/guard";
+import { EventDto, JoinEventDto } from "./dto";
+import { EventService } from "./event.service";
 
-@Controller('event')
+@Controller("event")
 export class EventController {
   constructor(private eventService: EventService) {}
 
@@ -12,19 +12,19 @@ export class EventController {
     return this.eventService.getAllEvents();
   }
 
-  @Get(':id')
-  getById(@Param('id') id: number) {
+  @Get(":id")
+  getById(@Param("id") id: number) {
     return this.eventService.getById(id);
   }
 
   @UseGuards(JwtGuard)
-  @Post()
+  @Post("create")
   createEvent(@Body() dto: EventDto) {
     return this.eventService.createEvent(dto);
   }
 
   @UseGuards(JwtGuard)
-  @Post()
+  @Post("join")
   joinEvent(@Body() dto: JoinEventDto) {
     return this.eventService.joinEvent(dto);
   }

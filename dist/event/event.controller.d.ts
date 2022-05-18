@@ -1,5 +1,5 @@
-import { EventDto, JoinEventDto } from './dto';
-import { EventService } from './event.service';
+import { EventDto, JoinEventDto } from "./dto";
+import { EventService } from "./event.service";
 export declare class EventController {
     private eventService;
     constructor(eventService: EventService);

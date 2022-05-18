@@ -3,8 +3,8 @@ export declare class EventDto {
     description: string;
     location: string;
     type: string;
-    date: Date;
-    time: Date;
+    date: string;
+    time: string;
     userId: number;
 }
 export declare class JoinEventDto {

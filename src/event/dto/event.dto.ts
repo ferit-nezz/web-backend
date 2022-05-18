@@ -1,5 +1,5 @@
-import { User } from '@prisma/client';
-import { IsNotEmpty, IsString, IsDate } from 'class-validator';
+import { User } from "@prisma/client";
+import { IsNotEmpty, IsString, IsDate } from "class-validator";
 
 export class EventDto {
   @IsString()
@@ -18,13 +18,13 @@ export class EventDto {
   @IsNotEmpty()
   type: string;
 
-  @IsDate()
+  @IsString()
   @IsNotEmpty()
-  date: Date;
+  date: string;
 
-  @IsDate()
+  @IsString()
   @IsNotEmpty()
-  time: Date;
+  time: string;
 
   @IsNotEmpty()
   userId: number;

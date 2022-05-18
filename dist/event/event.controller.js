@@ -41,15 +41,15 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], EventController.prototype, "getAllEvents", null);
 __decorate([
-    (0, common_1.Get)(':id'),
-    __param(0, (0, common_1.Param)('id')),
+    (0, common_1.Get)(":id"),
+    __param(0, (0, common_1.Param)("id")),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", void 0)
 ], EventController.prototype, "getById", null);
 __decorate([
     (0, common_1.UseGuards)(guard_1.JwtGuard),
-    (0, common_1.Post)(),
+    (0, common_1.Post)("create"),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [dto_1.EventDto]),
@@ -57,14 +57,14 @@ __decorate([
 ], EventController.prototype, "createEvent", null);
 __decorate([
     (0, common_1.UseGuards)(guard_1.JwtGuard),
-    (0, common_1.Post)(),
+    (0, common_1.Post)("join"),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [dto_1.JoinEventDto]),
     __metadata("design:returntype", void 0)
 ], EventController.prototype, "joinEvent", null);
 EventController = __decorate([
-    (0, common_1.Controller)('event'),
+    (0, common_1.Controller)("event"),
     __metadata("design:paramtypes", [event_service_1.EventService])
 ], EventController);
 exports.EventController = EventController;
