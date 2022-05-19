@@ -40,4 +40,14 @@ export class EventController {
   joinEvent(@Body() dto: JoinEventDto) {
     return this.eventService.joinEvent(dto);
   }
+
+  /* @Get("is-joined")
+  isUserJoined(
+    @Body("userId") userId: number,
+    @Body("eventId") eventId: number
+  ) {
+    console.log(userId);
+    console.log(eventId);
+    return this.eventService.isUserJoined(userId, eventId);
+  } */
 }

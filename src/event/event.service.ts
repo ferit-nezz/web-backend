@@ -11,6 +11,18 @@ export class EventService {
     return await this.prisma.event.findMany();
   }
 
+  async isUserJoined(userId: number, eventId: number) {
+    const userEvent = await this.prisma.eventUsers.findMany({
+      where: {
+        userId: userId,
+        eventId: eventId,
+      },
+    });
+
+    if (userEvent) return true;
+    return false;
+  }
+
   async getAllUserEvents(userId: number) {
     return await this.prisma.event.findMany({
       where: {
