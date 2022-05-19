@@ -1,7 +1,7 @@
-import { Injectable, UseFilters } from '@nestjs/common';
-import { PrismaClientKnownRequestError } from '@prisma/client/runtime';
-import { PrismaService } from 'src/prisma/prisma.service';
-import { EventDto, JoinEventDto } from './dto';
+import { Injectable, UseFilters } from "@nestjs/common";
+import { PrismaClientKnownRequestError } from "@prisma/client/runtime";
+import { PrismaService } from "src/prisma/prisma.service";
+import { EventDto, JoinEventDto } from "./dto";
 
 @Injectable()
 export class EventService {
@@ -11,10 +11,10 @@ export class EventService {
     return await this.prisma.event.findMany();
   }
 
-  async getById(id: number) {
+  async getById(id: string) {
     return await this.prisma.event.findUnique({
       where: {
-        id,
+        id: parseInt(id),
       },
     });
   }
@@ -28,7 +28,7 @@ export class EventService {
       return event;
     } catch (error) {
       if (error instanceof PrismaClientKnownRequestError) {
-        throw new Error('Error on event create');
+        throw new Error("Error on event create");
       }
       throw error;
     }
@@ -42,7 +42,7 @@ export class EventService {
       });
     } catch (error) {
       if (error instanceof PrismaClientKnownRequestError) {
-        throw new Error('Error on event create');
+        throw new Error("Error on event create");
       }
       throw error;
     }

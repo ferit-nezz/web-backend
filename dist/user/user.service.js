@@ -9,55 +9,24 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.EventService = void 0;
+exports.UserService = void 0;
 const common_1 = require("@nestjs/common");
-const runtime_1 = require("@prisma/client/runtime");
 const prisma_service_1 = require("../prisma/prisma.service");
-let EventService = class EventService {
+let UserService = class UserService {
     constructor(prisma) {
         this.prisma = prisma;
     }
-    async getAllEvents() {
-        return await this.prisma.event.findMany();
-    }
     async getById(id) {
-        return await this.prisma.event.findUnique({
+        return await this.prisma.user.findUnique({
             where: {
                 id: parseInt(id),
             },
         });
     }
-    async createEvent(dto) {
-        try {
-            const event = await this.prisma.event.create({
-                data: dto,
-            });
-            return event;
-        }
-        catch (error) {
-            if (error instanceof runtime_1.PrismaClientKnownRequestError) {
-                throw new Error("Error on event create");
-            }
-            throw error;
-        }
-    }
-    async joinEvent(dto) {
-        try {
-            return await this.prisma.eventUsers.create({
-                data: dto,
-            });
-        }
-        catch (error) {
-            if (error instanceof runtime_1.PrismaClientKnownRequestError) {
-                throw new Error("Error on event create");
-            }
-            throw error;
-        }
-    }
 };
-EventService = __decorate([
+UserService = __decorate([
     (0, common_1.Injectable)(),
     __metadata("design:paramtypes", [prisma_service_1.PrismaService])
-], EventService);
-exports.EventService = EventService;
-//# sourceMappingURL=event.service.js.map
+], UserService);
+exports.UserService = UserService;
+//# sourceMappingURL=user.service.js.map

@@ -13,7 +13,7 @@ export class EventController {
   }
 
   @Get(":id")
-  getById(@Param("id") id: number) {
+  getById(@Param("id") id: string) {
     return this.eventService.getById(id);
   }
 
