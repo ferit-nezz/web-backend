@@ -13,13 +13,13 @@ export class EventController {
   }
 
   @Get("my")
-  @UseGuards(JwtGuard)
+  //@UseGuards(JwtGuard)
   getAllUserEvents(@Body("userId") userId: number) {
     return this.eventService.getAllUserEvents(userId);
   }
 
   @Get("joined")
-  @UseGuards(JwtGuard)
+  //@UseGuards(JwtGuard)
   getAllUserJoinedEvents(@Body("userId") userId: number) {
     return this.eventService.getAllUserJoinedEvents(userId);
   }

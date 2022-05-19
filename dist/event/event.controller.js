@@ -48,7 +48,6 @@ __decorate([
 ], EventController.prototype, "getAllEvents", null);
 __decorate([
     (0, common_1.Get)("my"),
-    (0, common_1.UseGuards)(guard_1.JwtGuard),
     __param(0, (0, common_1.Body)("userId")),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
@@ -56,7 +55,6 @@ __decorate([
 ], EventController.prototype, "getAllUserEvents", null);
 __decorate([
     (0, common_1.Get)("joined"),
-    (0, common_1.UseGuards)(guard_1.JwtGuard),
     __param(0, (0, common_1.Body)("userId")),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
