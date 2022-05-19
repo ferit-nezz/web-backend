@@ -24,6 +24,12 @@ let EventController = class EventController {
     getAllEvents() {
         return this.eventService.getAllEvents();
     }
+    getAllUserEvents(userId) {
+        return this.eventService.getAllUserEvents(userId);
+    }
+    getAllUserJoinedEvents(userId) {
+        return this.eventService.getAllUserJoinedEvents(userId);
+    }
     getById(id) {
         return this.eventService.getById(id);
     }
@@ -40,6 +46,22 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
 ], EventController.prototype, "getAllEvents", null);
+__decorate([
+    (0, common_1.Get)("my"),
+    (0, common_1.UseGuards)(guard_1.JwtGuard),
+    __param(0, (0, common_1.Body)("userId")),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", void 0)
+], EventController.prototype, "getAllUserEvents", null);
+__decorate([
+    (0, common_1.Get)("joined"),
+    (0, common_1.UseGuards)(guard_1.JwtGuard),
+    __param(0, (0, common_1.Body)("userId")),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", void 0)
+], EventController.prototype, "getAllUserJoinedEvents", null);
 __decorate([
     (0, common_1.Get)(":id"),
     __param(0, (0, common_1.Param)("id")),

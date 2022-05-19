@@ -12,6 +12,18 @@ export class EventController {
     return this.eventService.getAllEvents();
   }
 
+  @Get("my")
+  @UseGuards(JwtGuard)
+  getAllUserEvents(@Body("userId") userId: number) {
+    return this.eventService.getAllUserEvents(userId);
+  }
+
+  @Get("joined")
+  @UseGuards(JwtGuard)
+  getAllUserJoinedEvents(@Body("userId") userId: number) {
+    return this.eventService.getAllUserJoinedEvents(userId);
+  }
+
   @Get(":id")
   getById(@Param("id") id: string) {
     return this.eventService.getById(id);

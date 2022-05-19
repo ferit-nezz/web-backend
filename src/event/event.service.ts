@@ -11,6 +11,28 @@ export class EventService {
     return await this.prisma.event.findMany();
   }
 
+  async getAllUserEvents(userId: number) {
+    return await this.prisma.event.findMany({
+      where: {
+        userId: userId,
+      },
+    });
+  }
+
+  async getAllUserJoinedEvents(userId: number) {
+    const eventUsers = await this.prisma.eventUsers.findMany({
+      where: {
+        userId: userId,
+      },
+    });
+
+    return await this.prisma.event.findMany({
+      where: {
+        id: { in: eventUsers.map((x) => x.id) },
+      },
+    });
+  }
+
   async getById(id: string) {
     return await this.prisma.event.findUnique({
       where: {
