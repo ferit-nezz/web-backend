@@ -35,7 +35,15 @@ export class EventService {
   }
 
   async joinEvent(dto: JoinEventDto) {
-    //TO DO add guard
+    /*  const eventUsers = await this.prisma.eventUsers.findUnique({
+      where: {
+        // userId: dto.userId,
+        //eventId: dto.eventId,
+      },
+    });
+
+    if (eventUsers) return; */
+
     try {
       return await this.prisma.eventUsers.create({
         data: dto,

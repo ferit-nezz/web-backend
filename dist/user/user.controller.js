@@ -20,7 +20,6 @@ let UserController = class UserController {
         this.userService = userService;
     }
     getById(id) {
-        console.log(id);
         return this.userService.getById(id);
     }
 };
