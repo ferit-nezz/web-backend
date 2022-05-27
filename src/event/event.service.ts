@@ -23,18 +23,20 @@ export class EventService {
     return false;
   }
 
-  async getAllUserEvents(userId: number) {
+  async getAllUserEvents(userId: string) {
+    console.log(userId);
     return await this.prisma.event.findMany({
       where: {
-        userId: userId,
+        userId: parseInt(userId),
       },
     });
   }
 
-  async getAllUserJoinedEvents(userId: number) {
+  async getAllUserJoinedEvents(userId: string) {
+    console.log(userId);
     const eventUsers = await this.prisma.eventUsers.findMany({
       where: {
-        userId: userId,
+        userId: parseInt(userId),
       },
     });
 

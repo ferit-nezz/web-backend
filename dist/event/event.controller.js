@@ -47,17 +47,17 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], EventController.prototype, "getAllEvents", null);
 __decorate([
-    (0, common_1.Get)("my"),
-    __param(0, (0, common_1.Body)("userId")),
+    (0, common_1.Get)("my/:userId"),
+    __param(0, (0, common_1.Param)("userId")),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Number]),
+    __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], EventController.prototype, "getAllUserEvents", null);
 __decorate([
-    (0, common_1.Get)("joined"),
-    __param(0, (0, common_1.Body)("userId")),
+    (0, common_1.Get)("joined/:userId"),
+    __param(0, (0, common_1.Param)("userId")),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Number]),
+    __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], EventController.prototype, "getAllUserJoinedEvents", null);
 __decorate([

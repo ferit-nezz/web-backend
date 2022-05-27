@@ -1,4 +1,12 @@
-import { Body, Controller, Get, Param, Post, UseGuards } from "@nestjs/common";
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  Post,
+  Query,
+  UseGuards,
+} from "@nestjs/common";
 import { JwtGuard } from "src/auth/guard";
 import { EventDto, JoinEventDto } from "./dto";
 import { EventService } from "./event.service";
@@ -12,15 +20,15 @@ export class EventController {
     return this.eventService.getAllEvents();
   }
 
-  @Get("my")
+  @Get("my/:userId")
   //@UseGuards(JwtGuard)
-  getAllUserEvents(@Body("userId") userId: number) {
+  getAllUserEvents(@Param("userId") userId: string) {
     return this.eventService.getAllUserEvents(userId);
   }
 
-  @Get("joined")
+  @Get("joined/:userId")
   //@UseGuards(JwtGuard)
-  getAllUserJoinedEvents(@Body("userId") userId: number) {
+  getAllUserJoinedEvents(@Param("userId") userId: string) {
     return this.eventService.getAllUserJoinedEvents(userId);
   }
 
