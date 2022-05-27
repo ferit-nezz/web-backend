@@ -8,7 +8,7 @@ import {
   UseGuards,
 } from "@nestjs/common";
 import { JwtGuard } from "src/auth/guard";
-import { EventDto, JoinEventDto } from "./dto";
+import { EventDto, EventInteractionDto } from "./dto";
 import { EventService } from "./event.service";
 
 @Controller("event")
@@ -45,17 +45,21 @@ export class EventController {
 
   @UseGuards(JwtGuard)
   @Post("join")
-  joinEvent(@Body() dto: JoinEventDto) {
+  joinEvent(@Body() dto: EventInteractionDto) {
     return this.eventService.joinEvent(dto);
   }
 
-  /* @Get("is-joined")
+  @UseGuards(JwtGuard)
+  @Post("unjoin")
+  unjoinEvent(@Body() dto: EventInteractionDto) {
+    return this.eventService.unjoinEvent(dto);
+  }
+
+  @Get("is-joined/:userId/:eventId")
   isUserJoined(
-    @Body("userId") userId: number,
-    @Body("eventId") eventId: number
+    @Param("userId") userId: string,
+    @Param("eventId") eventId: string
   ) {
-    console.log(userId);
-    console.log(eventId);
     return this.eventService.isUserJoined(userId, eventId);
-  } */
+  }
 }

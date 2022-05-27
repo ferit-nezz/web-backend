@@ -1,4 +1,4 @@
-import { EventDto, JoinEventDto } from "./dto";
+import { EventDto, EventInteractionDto } from "./dto";
 import { EventService } from "./event.service";
 export declare class EventController {
     private eventService;
@@ -8,5 +8,7 @@ export declare class EventController {
     getAllUserJoinedEvents(userId: string): Promise<import(".prisma/client").Event[]>;
     getById(id: string): Promise<import(".prisma/client").Event>;
     createEvent(dto: EventDto): Promise<import(".prisma/client").Event>;
-    joinEvent(dto: JoinEventDto): Promise<import(".prisma/client").EventUsers>;
+    joinEvent(dto: EventInteractionDto): Promise<import(".prisma/client").EventUsers | "User is already joined">;
+    unjoinEvent(dto: EventInteractionDto): Promise<false | import(".prisma/client").EventUsers>;
+    isUserJoined(userId: string, eventId: string): Promise<boolean>;
 }

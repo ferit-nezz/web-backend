@@ -7,7 +7,7 @@ export declare class EventDto {
     time: string;
     userId: number;
 }
-export declare class JoinEventDto {
+export declare class EventInteractionDto {
     userId: number;
     eventId: number;
 }

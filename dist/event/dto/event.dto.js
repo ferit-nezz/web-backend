@@ -9,7 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.JoinEventDto = exports.EventDto = void 0;
+exports.EventInteractionDto = exports.EventDto = void 0;
 const class_validator_1 = require("class-validator");
 class EventDto {
 }
@@ -48,15 +48,15 @@ __decorate([
     __metadata("design:type", Number)
 ], EventDto.prototype, "userId", void 0);
 exports.EventDto = EventDto;
-class JoinEventDto {
+class EventInteractionDto {
 }
 __decorate([
     (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", Number)
-], JoinEventDto.prototype, "userId", void 0);
+], EventInteractionDto.prototype, "userId", void 0);
 __decorate([
     (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", Number)
-], JoinEventDto.prototype, "eventId", void 0);
-exports.JoinEventDto = JoinEventDto;
+], EventInteractionDto.prototype, "eventId", void 0);
+exports.EventInteractionDto = EventInteractionDto;
 //# sourceMappingURL=event.dto.js.map

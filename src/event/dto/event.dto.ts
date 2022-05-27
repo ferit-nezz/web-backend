@@ -1,5 +1,5 @@
 import { User } from "@prisma/client";
-import { IsNotEmpty, IsString, IsDate } from "class-validator";
+import { IsNotEmpty, IsString } from "class-validator";
 
 export class EventDto {
   @IsString()
@@ -30,7 +30,7 @@ export class EventDto {
   userId: number;
 }
 
-export class JoinEventDto {
+export class EventInteractionDto {
   @IsNotEmpty()
   userId: number;
 

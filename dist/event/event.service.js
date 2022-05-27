@@ -23,11 +23,11 @@ let EventService = class EventService {
     async isUserJoined(userId, eventId) {
         const userEvent = await this.prisma.eventUsers.findMany({
             where: {
-                userId: userId,
-                eventId: eventId,
+                userId: parseInt(userId),
+                eventId: parseInt(eventId),
             },
         });
-        if (userEvent)
+        if (userEvent.length > 0)
             return true;
         return false;
     }
@@ -40,12 +40,12 @@ let EventService = class EventService {
         });
     }
     async getAllUserJoinedEvents(userId) {
-        console.log(userId);
         const eventUsers = await this.prisma.eventUsers.findMany({
             where: {
                 userId: parseInt(userId),
             },
         });
+        console.log(eventUsers);
         return await this.prisma.event.findMany({
             where: {
                 id: { in: eventUsers.map((x) => x.id) },
@@ -74,6 +74,14 @@ let EventService = class EventService {
         }
     }
     async joinEvent(dto) {
+        const eventUsers = await this.prisma.eventUsers.findMany({
+            where: {
+                userId: dto.userId,
+                eventId: dto.eventId,
+            },
+        });
+        if (eventUsers.length > 0)
+            return "User is already joined";
         try {
             return await this.prisma.eventUsers.create({
                 data: dto,
@@ -85,6 +93,22 @@ let EventService = class EventService {
             }
             throw error;
         }
+    }
+    async unjoinEvent(dto) {
+        const eventUser = await this.prisma.eventUsers.findMany({
+            where: {
+                userId: dto.userId,
+                eventId: dto.eventId,
+            },
+        });
+        if (eventUser.length > 0) {
+            return await this.prisma.eventUsers.delete({
+                where: {
+                    id: eventUser[0].id,
+                },
+            });
+        }
+        return false;
     }
 };
 EventService = __decorate([
