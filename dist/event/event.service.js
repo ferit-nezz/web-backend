@@ -32,7 +32,6 @@ let EventService = class EventService {
         return false;
     }
     async getAllUserEvents(userId) {
-        console.log(userId);
         return await this.prisma.event.findMany({
             where: {
                 userId: parseInt(userId),
@@ -45,10 +44,9 @@ let EventService = class EventService {
                 userId: parseInt(userId),
             },
         });
-        console.log(eventUsers);
         return await this.prisma.event.findMany({
             where: {
-                id: { in: eventUsers.map((x) => x.id) },
+                id: { in: eventUsers.map((x) => x.eventId) },
             },
         });
     }
@@ -74,6 +72,7 @@ let EventService = class EventService {
         }
     }
     async joinEvent(dto) {
+        console.log(dto);
         const eventUsers = await this.prisma.eventUsers.findMany({
             where: {
                 userId: dto.userId,

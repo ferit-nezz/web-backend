@@ -24,7 +24,6 @@ export class EventService {
   }
 
   async getAllUserEvents(userId: string) {
-    console.log(userId);
     return await this.prisma.event.findMany({
       where: {
         userId: parseInt(userId),
@@ -39,11 +38,9 @@ export class EventService {
       },
     });
 
-    console.log(eventUsers);
-
     return await this.prisma.event.findMany({
       where: {
-        id: { in: eventUsers.map((x) => x.id) },
+        id: { in: eventUsers.map((x) => x.eventId) },
       },
     });
   }
@@ -72,6 +69,7 @@ export class EventService {
   }
 
   async joinEvent(dto: EventInteractionDto) {
+    console.log(dto);
     const eventUsers = await this.prisma.eventUsers.findMany({
       where: {
         userId: dto.userId,
